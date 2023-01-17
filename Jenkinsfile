@@ -30,8 +30,7 @@ node {
         stage('Run App') {
             sh """
                 kubectl get pods
-                docker pull jenkins/jenkins
-                docker images
+               
             """
         }
     }
