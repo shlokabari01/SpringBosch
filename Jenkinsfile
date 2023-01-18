@@ -12,7 +12,7 @@ node {
     }
     /*stage('SonarQube Analysis'){
           withSonarQubeEnv(credentialsId: 'sonarCredentials') {
-           sh "${sonarScanner}/bin/sonar-scanner-Dsonar.projectKey=MavenBuild -Dsonar.sources=."
+           sh "${sonarScanner}/bin/sonar-scanner-Dsonar.projectKey=SpringBosch -Dsonar.sources=."
             } 
     }*/
     stage('Building image') {
