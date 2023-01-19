@@ -10,11 +10,11 @@ node {
         sh "mvn clean install"
         
     }
-    /*stage('SonarQube Analysis'){
+    stage('SonarQube Analysis'){
           withSonarQubeEnv(credentialsId: 'sonarCredentials') {
-           sh "${sonarScanner}/bin/sonar-scanner-Dsonar.projectKey=SpringBosch -Dsonar.sources=."
+           sh "${sonarScanner}/bin/sonar-scanner
             } 
-    }*/
+    }
     stage('Building image') {
         script {
           dockerImage = docker.build imagename
