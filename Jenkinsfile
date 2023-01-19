@@ -2,18 +2,13 @@ def imagename = "shlokabari06/project1"
 def dockerImage = ''
 def containerName="springbosch"
 node {
-    def sonarScanner = tool name: 'forSonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+   //def sonarScanner = tool name: 'forSonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     stage('Checkout') {
-         git(url: 'https://github.com/shlokabari01/MavenBuild.git', branch: 'master')
+         git(url: 'https://github.com/shlokabari01/SpringBosch.git', branch: 'master')
     }
     stage('Build Project') {
         sh "mvn clean install"
         
-    }
-    stage('SonarQube Analysis'){
-          withSonarQubeEnv(credentialsId: 'sonarCredentials') {
-           sh "${sonarScanner}/bin/sonar-scanner
-            } 
     }
     stage('Building image') {
         script {
@@ -29,7 +24,9 @@ node {
    node('kubernateMaster') {
         stage('Run App') {
             sh """
+                kubectl create deployment kubernetes-sprinboot --image=docker.io/shlokabari06/project1:latest --port=8090
                 kubectl get pods
+                
                
             """
         }
