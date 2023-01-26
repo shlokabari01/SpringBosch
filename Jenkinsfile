@@ -10,6 +10,10 @@ node {
         sh "mvn clean install"
         
     }
+   stage ('Test Cases Execution'){
+		sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
+	
+   }
     stage('Building image') {
         script {
           dockerImage = docker.build imagename
