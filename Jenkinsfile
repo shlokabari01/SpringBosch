@@ -24,6 +24,9 @@ node {
             sh "docker login -u ${env.DocCredUser} -p ${env.DocCredPassword}"
             sh 'docker push shlokabari06/project1:latest'
       }
+	    stage ('Archive Artifacts'){
+		archiveArtifacts artifacts: 'target/*.war'
+	}
     }
    node('kubernateMaster') {
         stage('Run App') {
