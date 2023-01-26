@@ -2,7 +2,7 @@ def imagename = "shlokabari06/project1"
 def dockerImage = ''
 def containerName="springbosch"
 node {
-   def sonarScanner = tool name: 'forSonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+  
     stage('Git Checkout') {
          git(url: 'https://github.com/shlokabari01/SpringBosch.git', branch: 'master')
     }
@@ -14,11 +14,7 @@ node {
 		sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test"
 	
    }
-   stage('SonarQube Analysis'){
-         withSonarQubeEnv(credentialsId: 'FinalSonar') {
-           sh "${sonarScanner}/bin/sonar-scanner"
-            } 
-    }
+  
     stage('Building image') {
         script {
           dockerImage = docker.build imagename
