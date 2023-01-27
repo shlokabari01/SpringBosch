@@ -3,7 +3,7 @@ def dockerImage = ''
 def containerName="springbosch"
 node {
   
-    stage('Git Checkout') {
+    stage('GitCheckout') {
          git(url: 'https://github.com/shlokabari01/SpringBosch.git', branch: 'master')
     }
     stage('Build Project') {
